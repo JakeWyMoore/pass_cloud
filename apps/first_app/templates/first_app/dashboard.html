@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PassCloud | Dashboard</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/vendor/animate/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/vendor/css-hamburgers/hamburgers.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/vendor/animsition/css/animsition.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'first_app/vendor/daterangepicker/daterangepicker.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'first_app/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'first_app/css/style.css' %}">
+    
+    <link rel="shortcut icon" type="image/png" href="{% static 'first_app/images/fav.png' %}">
+
+    <style>
+        @media (max-width: 576px) {
+            .mobile-hide{
+                display: none;
+            }
+        
+            .wrap-login100 {
+                padding: 77px 15px 33px 15px;
+            }
+            .center {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                text-align: center;
+            }
+            .mobile-button {
+                background-color: #6a7dfe;
+                border: none;
+                padding: 5px 15px;
+                margin: 5px 0 5px 0;
+                border-radius: 10px;
+                color: white;
+            }
+            .mobile-button:hover {
+                background-color: #666666;
+            }
+        }
+        @media (min-width: 577px) {
+            .mobile-show {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="dashboard">
+
+                <!-- HIDE ON MOBILE -->
+                <div class="mobile-hide">
+                    <span class="login100-form-title p-b-26">
+                        Hello, {{ user.first_name }}.
+                    </span>
+                    <div class="text-center">
+                        <div class="logout">
+                            <a href="/profile">My Profile</a>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive-sm">
+                        <table class="table table-sm">
+                            {% for p in passwords %}
+                            <tbody>
+                            <tr class="shrink">
+                                <td>{{ p.company }}</td>
+                                <td>{{ p.email }}</td>
+                                <td>{{ p.password }}</td>
+                                <td class="data">
+                                    <span class="login100-form-p p-b-48">
+                                    <a href="/edit/{{ p.id }}"><i class="zmdi zmdi-menu"></i></a>
+                                </span>
+                                </td>
+                                <td class="data">
+                                    <span class="login100-form-p p-b-48">
+                                    <a href="/delete/{{ p.id }}"><i class="zmdi zmdi-delete"></i></a>
+                                </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+    
+                    <span class="login100-form-title p-b-48">
+                        <a href="/add_password"><i class="zmdi zmdi-plus-circle"></i></a>
+                    </span>
+                </div>
+
+                <!-- SHOW ON MOBILE -->
+                <div class="mobile-show">
+                    <span class="login100-form-title p-b-26">
+                        Hello, {{ user.first_name }}.
+                    </span>
+                    <div class="text-center">
+                        <div class="logout">
+                            <a href="/profile">My Profile</a>
+                        </div>
+                    </div>
+                    
+                    <div class="center">
+                        {% for p in passwords %}
+                        <button class="mobile-button" onclick="location.href='/mobile_display/{{ p.id }}'">{{ p.company }}</button><br/>
+                        {% endfor %}
+                    </div>
+    
+                    <span class="login100-form-title p-b-48">
+                        <a href="/add_password"><i class="zmdi zmdi-plus-circle"></i></a>
+                    </span>
+                </div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+	<script src="{% static 'first_app/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'first_app/vendor/animsition/js/animsition.min.js' %}"></script>
+	<script src="{% static 'first_app/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'first_app/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'first_app/vendor/select2/select2.min.js' %}"></script>
+	<script src="{% static 'first_app/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'first_app/vendor/daterangepicker/daterangepicker.js' %}"></script>
+	<script src="{% static 'first_app/vendor/countdowntime/countdowntime.js' %}"></script>
+	<script src="{% static 'first_app/js/script.js' %}"></script>
+
+</body>
+</html>
